@@ -20,4 +20,17 @@ class ResourceController extends BaseController
 
         return $this->sendResponse($filtersService->getResources(), 'Resources Fetched Successfully');
     }
+
+
+    /**
+     * Resources 3rd Party api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllApi()
+    {
+        $filtersService = new FiltersService();
+
+        return $this->sendResponse($filtersService->getResourceApi(), 'Resources Api Fetched Successfully');
+    }
 }

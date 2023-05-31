@@ -21,4 +21,19 @@ class NewsController extends BaseController
 
         return $this->sendResponse($news, 'News Fetched Successfully');
     }
+
+
+       /**
+     * News Feed 3rd party api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getNewsApi(Request $request)
+    {
+        $newsService = new NewsService();
+
+        $news = $newsService->getNewsApi($request ?? []);
+
+        return $this->sendResponse($news, 'News Api Fetched Successfully');
+    }
 }

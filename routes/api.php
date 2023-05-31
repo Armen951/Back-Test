@@ -35,6 +35,8 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::get('categories', [CategoryController::class,'getAll']);
     Route::get('authors', [AuthorController::class,'getAll']);
     Route::get('resources', [ResourceController::class,'getAll']);
+    Route::get('resources/api', [ResourceController::class,'getAllApi']);
     Route::get('news', [NewsController::class,'getAll']);
+    Route::get('news/api', [NewsController::class,'getNewsApi']);
     Route::get('articles', [ArticleController::class,'getAll']);
 });

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\News;
+use Illuminate\Support\Facades\Http;
 
 class NewsService
 {
@@ -17,5 +18,14 @@ class NewsService
         })->get();
 
         return $news;
+    }
+
+
+    public function getNewsApi($data)
+    {
+
+        $news =  Http::get('https://newsapi.org/v2/top-headlines?country=us&apiKey='.env('NEWS_KEY'));
+
+        return $news->json();
     }
 }
