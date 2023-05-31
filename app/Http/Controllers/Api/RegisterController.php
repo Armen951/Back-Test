@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
+use App\Services\AuthService;
+use Exception;
 use Illuminate\Support\Facades\Auth;
-use Validator;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class RegisterController extends BaseController
@@ -29,14 +29,17 @@ class RegisterController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
         }
+        try {
+            $authService = new AuthService();
 
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $user->name;
+            $data = $request->all();
 
-        return $this->sendResponse($success, 'User register successfully.');
+            $success = $authService->register($data);
+
+            return $this->sendResponse($success, 'User register successfully.');
+        } catch(Exception $err) {
+            return $this->sendError('Failed To Register.', ['error'=>$err->getMessage()]);
+        }
     }
 
     /**

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseController;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Services\FiltersService;
 
 class CategoryController extends BaseController
 {
@@ -15,8 +14,8 @@ class CategoryController extends BaseController
      */
     public function getAll()
     {
-        $categories = Category::all();
+        $filtersService = new FiltersService();
 
-        return $this->sendResponse($categories, 'Categories Fetched Successfully');
+        return $this->sendResponse($filtersService->getCategories(), 'Categories Fetched Successfully');
     }
 }

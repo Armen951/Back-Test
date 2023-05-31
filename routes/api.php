@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\RegisterController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\AuthorController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Api\ResourceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

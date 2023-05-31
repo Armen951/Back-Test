@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseController;
+use App\Services\FiltersService;
 use App\Models\Resource;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class ResourceController extends BaseController
      */
     public function getAll()
     {
-        $resources = Resource::all();
+        $filtersService = new FiltersService();
 
-        return $this->sendResponse($resources, 'Resources Fetched Successfully');
+        return $this->sendResponse($filtersService->getResources(), 'Resources Fetched Successfully');
     }
 }

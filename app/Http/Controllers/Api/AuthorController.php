@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\BaseController;
-use App\Models\Author;
+use App\Services\FiltersService;
 
 class AuthorController extends BaseController
 {
@@ -14,8 +14,8 @@ class AuthorController extends BaseController
      */
     public function getAll()
     {
-        $authors = Author::all();
+        $filtersService = new FiltersService();
 
-        return $this->sendResponse($authors, 'Authors Fetched Successfully');
+        return $this->sendResponse($filtersService->getAuthors(), 'Authors Fetched Successfully');
     }
 }
